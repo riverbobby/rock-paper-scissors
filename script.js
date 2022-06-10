@@ -21,7 +21,38 @@ function playPrompt() {
 
 
 function playRound(playerSelection, computerSelection) {
-    console.log(`player: ${playerSelection}\ncomputer: ${computerSelection}`);
+    if (playerSelection === computerSelection) {
+        console.log('Tie press F5 to try again!');
+        return;
+    } 
+    //variables for messages
+    let win = '\nYou Win!\npress F5 to play again!';
+    let lose = '\nYou Lose!\npress F5 to try again!';
+    let rockBreaksScissors = 'Rock breaks Scissors';
+    let paperCoversRock = 'Paper covers Rock';
+    let scissorsCutsPaper = 'Scissors cuts paper';
+    
+    if (playerSelection === 'rock') {
+        if (computerSelection === 'paper') {
+            console.log(paperCoversRock + lose);
+        } else {
+            console.log(rockBreaksScissors + win);
+        }
+        
+    } else if (playerSelection === 'paper') {
+        if (computerSelection === 'rock') {
+            console.log(paperCoversRock + win);
+        } else {
+            console.log(scissorsCutsPaper + lose);
+        }
+        
+    } else { //playerSelection must be 'scissors'
+        if (computerSelection === 'rock') {
+            console.log(rockBreaksScissors + lose);
+        } else {
+            console.log(scissorsCutsPaper + win);
+        }
+    }
 }
 function computerPlay() {
     //finds random number between 0-2
