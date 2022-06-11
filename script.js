@@ -4,7 +4,8 @@ let losses = 0;
 let ties = 0;
 let rounds = 5;
 
-
+//prompt to open developer tools to view console
+alert(`Please open developer tools with F12 before playing and press okay to begin`);
 game();
 
 function game() {
@@ -73,7 +74,7 @@ function playRound(playerSelection, computerSelection) {
     } else if (playerSelection === 'paper') {
         if (computerSelection === 'rock') {
             console.log(paperCoversRock + win);
-            win++;
+            wins++;
         } else {
             console.log(scissorsCutsPaper + lose);
             losses++;
