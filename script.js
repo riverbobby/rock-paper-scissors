@@ -1,20 +1,48 @@
-// ask player for rock paper or scissors
-// player types selection and presses enter
-// computer randomly chooses rock paper or scissors
-// result of match is player wins, computer wins, or tie
-// result is returned to console
+//global variables
+let wins = 0;
+let losses = 0;
+let ties = 0;
+let rounds = 5;
 
 
-playPrompt();
+game();
+
+function game() {
+    //loop for the five rounds of the game
+    for (let i = 0; i < 5; i++) {
+        playPrompt();
+        rounds--;
+    }
+    let stats = `\nWins: ${wins}\nLosses: ${losses}\nTies: ${ties}\nPress F5 to play again!: ${ties}`;
+    let win = `You Won the Game!${stats}`;
+    let lose = `You Lost the Game!${stats}`;
+    let tie = `You Tied the Game!${stats}`;
+    if (wins > losses) {
+        console.log(win);
+    } else if (losses > wins) {
+        console.log(lose);
+    } else {
+        console.log(tie);
+    }
+}
 
 function playPrompt() {
-    let message = "Please ENTER: 'Rock', 'Paper', or 'Scissors'";
-    let playerSelection = prompt(message).toLowerCase();
+    let remaining = `\n${rounds} more round(s)`;
+    let message = `${remaining}\nPlease ENTER: 'Rock', 'Paper', or 'Scissors'\n`;
+    let result = prompt(message);
+    //catch null (cancel button was pressed)
+    if (result === null) {
+        alert(`Don't quit yet!`);
+        playPrompt();
+        return;
+    }
+    let playerSelection = result.toLowerCase();
     //validate string
     if (playerSelection === 'rock' || playerSelection === 'paper' || playerSelection === 'scissors') {
         playRound(playerSelection, computerPlay());
     } else {
-        console.log(`Invalid input, next time\n ${message}`);
+        alert(`Invalid input:`);
+        playPrompt();
     }
 
 }
@@ -22,12 +50,13 @@ function playPrompt() {
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        console.log('Tie press F5 to try again!');
+        console.log('Tie!');
+        ties++;
         return;
     } 
     //variables for messages
-    let win = '\nYou Win!\npress F5 to play again!';
-    let lose = '\nYou Lose!\npress F5 to try again!';
+    let win = '\nYou Win!';
+    let lose = '\nYou Lose!';
     let rockBreaksScissors = 'Rock breaks Scissors';
     let paperCoversRock = 'Paper covers Rock';
     let scissorsCutsPaper = 'Scissors cuts paper';
@@ -35,22 +64,28 @@ function playRound(playerSelection, computerSelection) {
     if (playerSelection === 'rock') {
         if (computerSelection === 'paper') {
             console.log(paperCoversRock + lose);
+            losses++;
         } else {
             console.log(rockBreaksScissors + win);
+            wins++;
         }
         
     } else if (playerSelection === 'paper') {
         if (computerSelection === 'rock') {
             console.log(paperCoversRock + win);
+            win++;
         } else {
             console.log(scissorsCutsPaper + lose);
+            losses++;
         }
         
     } else { //playerSelection must be 'scissors'
         if (computerSelection === 'rock') {
             console.log(rockBreaksScissors + lose);
+            losses++;
         } else {
             console.log(scissorsCutsPaper + win);
+            wins++;
         }
     }
 }
