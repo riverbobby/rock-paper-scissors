@@ -1,16 +1,5 @@
-//global variables
-let rounds = 5;
-
-// loadPageContainer.parentNode.removeChild(loadPageContainer);
-// bod.appendChild(loadPageContainer);
-
 const playButton = document.querySelector('#btn-play');
 playButton.onclick = game();
-
-// () => bod.removeChild(loadPageContainer);
-// TODO: put to following in main game function once it is ready
-
-
 
 function game() {
     let wins = 0;
@@ -24,72 +13,77 @@ function game() {
     const loadPageContainer = document.querySelector('#load-page-container');
     loadPageContainer.style.display = 'none';
 
+    //add to display #gamePageContainer
+    gamePageContainer.style.display = 'flex';
+    
+    //activate button start over
+    const startOver = document.querySelector('#btn-start-over');
+    startOver.onclick = () => window.location.reload();
+
+    //initialize stats
+    const winsDisplay = document.querySelector('#wins');
+    const lossesDisplay = document.querySelector('#losses');
+    const tiesDisplay = document.querySelector('#ties');
+    winsDisplay.textContent = `Wins: ${wins}`;
+    lossesDisplay.textContent = `Losses: ${losses}`;
+    tiesDisplay.textContent = `Ties: ${ties}`;
+    //initialize initial-result
+    const initialResult = document.querySelector('#initial-result');
+    initialResult.textContent = '';
+
     //initialize game
     while (!gameOver) {
-        playPrompt();
-    }
-    
-}
+        playRound();
 
-function playPrompt() {
-    let remaining = `\n${rounds} more round(s)`;
-    let message = `${remaining}\nPlease ENTER: 'Rock', 'Paper', or 'Scissors'\n`;
-    let result = prompt(message);
-    //catch null (cancel button was pressed)
-    if (result === null) {
-        alert(`Don't quit yet!`);
-        playPrompt();
-        return;
-    }
-    let playerSelection = result.toLowerCase();
-    //validate string
-    if (playerSelection === 'rock' || playerSelection === 'paper' || playerSelection === 'scissors') {
-        playRound(playerSelection, computerPlay());
-    } else {
-        alert(`Invalid input:`);
-        playPrompt();
-    }
+        //display stats
 
+        if (wins > 4 || losses > 4) {
+            gameOver = true;
+        }
+    }
+    //display final-result
+    const result = document.querySelector('#final-result');
+    result.style.display = 'block';
 }
 
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        console.log('Tie!');
+        initialResult.textContent = "Tie!";
         ties++;
         return;
     } 
     //variables for messages
-    let win = '\nYou Win!';
-    let lose = '\nYou Lose!';
     let rockBreaksScissors = 'Rock breaks Scissors';
     let paperCoversRock = 'Paper covers Rock';
     let scissorsCutsPaper = 'Scissors cuts paper';
+    let win = 'you win this round!';
+    let lose = 'you lose this round!';
     
     if (playerSelection === 'rock') {
         if (computerSelection === 'paper') {
-            console.log(paperCoversRock + lose);
+            initialResult.textContent = `${paperCoversRock} + ${lose}`;
             losses++;
         } else {
-            console.log(rockBreaksScissors + win);
+            initialResult.textContent = `${rockBreaksScissors} + ${win}`;
             wins++;
         }
         
     } else if (playerSelection === 'paper') {
         if (computerSelection === 'rock') {
-            console.log(paperCoversRock + win);
+            initialResult.textContent = `${paperCoversRock} + ${win}`;
             wins++;
         } else {
-            console.log(scissorsCutsPaper + lose);
+            initialResult.textContent = `${scissorsCutsPaper} + ${lose}`;
             losses++;
         }
         
     } else { //playerSelection must be 'scissors'
         if (computerSelection === 'rock') {
-            console.log(rockBreaksScissors + lose);
+            initialResult.textContent = `${rockBreaksScissors} + ${lose}`;
             losses++;
         } else {
-            console.log(scissorsCutsPaper + win);
+            initialResult.textContent = `${scissorsCutsPaper} + ${win}`;
             wins++;
         }
     }

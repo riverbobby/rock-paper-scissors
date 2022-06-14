@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="./style.css">
-    <!-- <script src="./script.js" defer></script> -->
+    <script src="./script.js" defer></script>
 </head>
 <body id="body">
     <h1 id="main-title">ROCK vs PAPER vs SCISSORS!!</h1>
@@ -20,11 +20,12 @@
             <img class="selector" src="https://picsum.photos/300/200" alt="placeholder for scissors">
         </div>
         <div id="stats">
-            <h3 class="stat" id="wins">Wins: 0</h3>
-            <h3 class="stat" id="losses">Losses: 0</h3>
-            <h3 class="stat" id="ties">Ties: 0</h3>
+            <h3 class="stat" id="wins"></h3>
+            <h3 class="stat" id="losses"></h3>
+            <h3 class="stat" id="ties"></h3>
         </div>
-        <h1 id="result">You have Won!</br>the computer has Lost!</h1>
+        <h2 class="results" id="initial-result"></h2>
+        <h1 class="results" id="final-result"></h1>
         <button class="btn" id="btn-start-over">Completely Start Over</button>    
     </div>
 </body>
