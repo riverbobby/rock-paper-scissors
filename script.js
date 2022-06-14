@@ -5,15 +5,15 @@ let ties = 0;
 let rounds = 5;
 
 //prompt to open developer tools to view console
-alert(`Please open developer tools with F12 before playing and press okay to begin`);
-game();
+
+// game();
 
 function game() {
     //loop for the five rounds of the game
-    for (let i = 0; i < 5; i++) {
+    // for (let i = 0; i < 5; i++) {
         playPrompt();
-        rounds--;
-    }
+        // rounds--;
+    // }
     let stats = `\nWins: ${wins}\nLosses: ${losses}\nTies: ${ties}\nPress F5 to play again!: ${ties}`;
     let win = `You Won the Game!${stats}`;
     let lose = `You Lost the Game!${stats}`;
