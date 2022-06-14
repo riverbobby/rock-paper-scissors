@@ -1,30 +1,34 @@
 //global variables
-let wins = 0;
-let losses = 0;
-let ties = 0;
 let rounds = 5;
 
-//prompt to open developer tools to view console
+// loadPageContainer.parentNode.removeChild(loadPageContainer);
+// bod.appendChild(loadPageContainer);
 
-// game();
+const playButton = document.querySelector('#btn-play');
+playButton.onclick = game();
+
+// () => bod.removeChild(loadPageContainer);
+// TODO: put to following in main game function once it is ready
+
+
 
 function game() {
-    //loop for the five rounds of the game
-    // for (let i = 0; i < 5; i++) {
+    let wins = 0;
+    let losses = 0;
+    let ties = 0;
+    let gameOver = false;
+    const bod = document.querySelector('#body');
+    const gamePageContainer = document.querySelector('#game-page-container');
+
+    //remove from display #loadPageContainer
+    const loadPageContainer = document.querySelector('#load-page-container');
+    loadPageContainer.style.display = 'none';
+
+    //initialize game
+    while (!gameOver) {
         playPrompt();
-        // rounds--;
-    // }
-    let stats = `\nWins: ${wins}\nLosses: ${losses}\nTies: ${ties}\nPress F5 to play again!: ${ties}`;
-    let win = `You Won the Game!${stats}`;
-    let lose = `You Lost the Game!${stats}`;
-    let tie = `You Tied the Game!${stats}`;
-    if (wins > losses) {
-        console.log(win);
-    } else if (losses > wins) {
-        console.log(lose);
-    } else {
-        console.log(tie);
     }
+    
 }
 
 function playPrompt() {
