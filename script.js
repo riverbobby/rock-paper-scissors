@@ -1,5 +1,5 @@
 const playButton = document.querySelector('#btn-play');
-playButton.onclick = game();
+playButton.addEventListener('click', game);
 
 function game() {
     let wins = 0;
@@ -11,9 +11,9 @@ function game() {
 
     //remove from display #loadPageContainer
     const loadPageContainer = document.querySelector('#load-page-container');
-    loadPageContainer.style.display = 'none';
+    bod.removeChild(loadPageContainer);
 
-    //add to display #gamePageContainer
+    //add to display #gamePageContainer and components
     gamePageContainer.style.display = 'flex';
     
     //activate button start over
@@ -27,16 +27,18 @@ function game() {
     winsDisplay.textContent = `Wins: ${wins}`;
     lossesDisplay.textContent = `Losses: ${losses}`;
     tiesDisplay.textContent = `Ties: ${ties}`;
-    //initialize initial-result
-    const initialResult = document.querySelector('#initial-result');
-    initialResult.textContent = '';
+    
 
     //initialize game
     while (!gameOver) {
-        playRound();
+    
+        //add onclick handlers for imgs
+        const rock = document.querySelector('#rock');
+        rock.addEventListener('click', playRound('rock', computerPlay()));
+        const paper = document.querySelector('#paper');
+        const scissors = document.querySelector('#scissors');
 
         //display stats
-
         if (wins > 4 || losses > 4) {
             gameOver = true;
         }
@@ -48,6 +50,9 @@ function game() {
 
 
 function playRound(playerSelection, computerSelection) {
+    //initialize initialResult
+    const initialResult = document.querySelector('#initial-result');
+
     if (playerSelection === computerSelection) {
         initialResult.textContent = "Tie!";
         ties++;
