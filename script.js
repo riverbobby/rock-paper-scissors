@@ -27,8 +27,9 @@ function game() {//starts the game
 
 
 function playRound(playerSelection, computerSelection) {//plays a round
-    //initialize initialResult
+    //initialize initialResult and selectionResult
     const initialResult = document.querySelector('#initial-result');
+    const selectionResult = document.querySelector('#selection-result');
 
     //variables for messages
     let rockBreaksScissors = 'Rock breaks Scissors';
@@ -36,7 +37,11 @@ function playRound(playerSelection, computerSelection) {//plays a round
     let scissorsCutsPaper = 'Scissors cuts paper';
     let winRound = 'you win this round!';
     let loseRound = 'you lose this round!';
-    
+    let choices = `You choose: ${playerSelection} + Computer chooses: ${computerSelection}`;
+
+    //display #selection-result
+    selectionResult.textContent = choices;
+
     if (playerSelection === computerSelection) {
         initialResult.textContent = "Tie!";
         ties++;
