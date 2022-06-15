@@ -20,12 +20,10 @@
     padding: 10px;
 }
 
-#load-page-container {
-    display: flex;
-}
+
 
 #game-page-container {
-    display: none;
+    visibility: hidden;
     justify-content: space-around;
     gap: 50px;
 }
@@ -50,3 +48,4 @@
     display: block;
     text-align: center;
 }
+
